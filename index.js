@@ -10,8 +10,8 @@ const app = express();
 const port = process.env.PORT
 app.use(helmet());
 app.use(bodyParser.json());
-app.get('/', logMiddleware, (req, res) => {
-    res.send('Hello World');
+app.get('/ping', logMiddleware, (req, res) => {
+    res.send('Pong');
 });
 app.use("/api/auth", logMiddleware, authRoutes);
 
