@@ -3,8 +3,9 @@ import { comparePassword, hashPassword } from "../helper/authHelpers.js";
 import JWT from "jsonwebtoken";
 
 export async function register(req, res) {
+    console.log(req.body);
     try {
-        const { email, password } = req.body;
+        const { email, password, role } = req.body;
         if (!email || !password) {
             return res.status(400).json({ message: "Email and password required" })
         }
@@ -13,7 +14,7 @@ export async function register(req, res) {
             return res.status(400).json({ message: "User already exists" });
         }
         const hashedPassword = await hashPassword(password);
-        const newUser = new auth({ email, password: hashedPassword });
+        const newUser = new auth({ email, password: hashedPassword, role: role ?? 'user' });
         await newUser.save();
         res.status(200).json({ success: true, message: "User created successfully" });
 
@@ -79,5 +80,14 @@ export async function forgotPassword(req, res) {
     catch (err) {
         console.log("Error in forgotPassword", err);
         res.status(500).json({ success: false, message: "Internal server error" });
+    }
+}
+
+export async function adminController(req, res) {
+    try {
+        res.status(200).json({ success: true, message: "Admin controller" })
+    }
+    catch (err) {
+        res.status(500).json({ success: false, message: "Internal server error" })
     }
 }
