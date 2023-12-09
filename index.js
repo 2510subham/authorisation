@@ -13,6 +13,9 @@ app.use(bodyParser.json());
 app.get('/ping', logMiddleware, (req, res) => {
     res.send('Pong');
 });
+app.get("/", (req, res) => {
+    res.send("Welcome to my app");
+});
 app.use("/api/auth", logMiddleware, authRoutes);
 
 app.listen(port, async () => {
