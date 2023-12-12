@@ -19,7 +19,7 @@
 
 3)POST -> '/forgot-password', ->give email,newPassword in body
 
-4) GET ->'/admin' -> to check middleware(validatingtoken,admin check)
+4)GET ->'/admin' -> to check middleware(validatingtoken,admin check)
 
 # Logging
 
