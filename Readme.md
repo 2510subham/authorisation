@@ -1,6 +1,6 @@
 # Auth App
 
-1)clone the repo and run npm init
+1)clone the repo and run npm install
 2)then, npm run start
 
 # Tech stack used
