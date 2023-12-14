@@ -4,16 +4,17 @@ import auth from "../modals/auth.js";
 export const validateUser = async (req, res, next) => {
     try {
         const token = req?.headers?.authorization
-        console.log("Token", token);
         const decode = jwt.verify(
             token,
             process.env.JWT_SECRET
         );
         req.user = decode;
-        console.log("User", req.user);
         next();
     } catch (error) {
-        console.log("Error while verifying token", error);
+        return res.status(401).send({
+                success: false,
+                message: "Error in verifying token",
+            });
     }
 };
 
@@ -30,7 +31,6 @@ export const isAdmin = async (req, res, next) => {
             next();
         }
     } catch (error) {
-        console.log("Error while verifying admin token", error);
         res.status(401).send({
             success: false,
             message: "Error in admin middleware",
