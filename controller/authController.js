@@ -3,7 +3,6 @@ import { comparePassword, hashPassword } from "../helper/authHelpers.js";
 import JWT from "jsonwebtoken";
 
 export async function register(req, res) {
-    console.log(req.body);
     try {
         const { email, password, role } = req.body;
         if (!email || !password) {
@@ -55,7 +54,6 @@ export async function login(req, res) {
         });
     }
     catch (err) {
-        console.log("Error in login", err);
         res.status(500).json({
             sucess: false,
             message: "Internal server error"
@@ -78,7 +76,6 @@ export async function forgotPassword(req, res) {
         res.status(200).json({ success: true, message: "Password updated successfully" });
     }
     catch (err) {
-        console.log("Error in forgotPassword", err);
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 }
